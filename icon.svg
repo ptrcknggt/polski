@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#58b368"/>
+<path d="M0 256h512v144q0 112-112 112H112Q0 512 0 400z" fill="#fff"/>
+<text x="256" y="235" text-anchor="middle" font-size="180" font-family="Arial,sans-serif">🇵🇱</text>
+<text x="256" y="355" text-anchor="middle" font-size="76" font-weight="800" font-family="Arial,sans-serif" fill="#203127">POLSKI</text>
+</svg>

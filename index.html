@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#58b368">
+<meta name="description" content="Dein persönlicher Polnisch-Sprachtrainer für Alltag, Reisen und Logistik.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+
+<title>POLSKI – Dein Polnisch-Trainer</title>
+<style>
+:root{--green:#58b368;--green2:#368b4b;--ink:#203127;--muted:#6d7c72;--bg:#f4f8f2;--card:#fff;--line:#e4ece2;--yellow:#f4c95d;--red:#df6c68}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,-apple-system,sans-serif}
+header{background:linear-gradient(130deg,#4ba85f,#80c879);color:white;padding:22px 18px 25px;border-radius:0 0 26px 26px}
+.top{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center}.brand{font-size:25px;font-weight:900;letter-spacing:2px}.tag{font-size:12px;background:#ffffff30;padding:7px 10px;border-radius:30px}
+.hero{max-width:900px;margin:22px auto 0}.hero h1{font-size:26px;margin:0 0 6px}.hero p{margin:0;opacity:.92;font-size:14px}
+main{max-width:900px;margin:18px auto;padding:0 14px 100px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:-2px}.stat,.panel,.lesson,.tile{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 3px 12px #25452b08}.stat strong{display:block;font-size:21px}.stat span{font-size:11px;color:var(--muted)}
+.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:23px 2px 11px}.sectionhead h2{font-size:18px;margin:0}.sectionhead small{color:var(--muted)}
+.path{display:grid;grid-template-columns:1fr 1fr;gap:11px}.lesson{display:flex;gap:12px;align-items:center;text-align:left;width:100%;color:inherit;cursor:pointer;transition:.15s}.lesson:active,.tile:active{transform:scale(.98)}.lesson .emoji{font-size:28px;background:#edf7ed;border-radius:13px;padding:10px}.lesson b{display:block;font-size:14px}.lesson small{color:var(--muted);font-size:11px}.lesson.locked{opacity:.48}.lesson.done{border-color:#a9d8ae}
+.tilegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tile{cursor:pointer;text-align:left;color:inherit}.tile .ico{font-size:23px}.tile b{display:block;margin:5px 0 2px}.tile small{color:var(--muted)}
+nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffed;backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;justify-content:center;gap:6px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));z-index:5}
+nav button{border:0;background:transparent;color:var(--muted);padding:7px 13px;border-radius:12px;font:inherit;font-size:12px;cursor:pointer}nav button.active{background:#e8f5e8;color:var(--green2);font-weight:800}
+.view{display:none}.view.active{display:block}.back{border:0;background:none;color:var(--green2);font:inherit;font-weight:700;padding:4px 0 12px;cursor:pointer}
+.cardtitle{font-size:22px;margin:5px 0}.sub{color:var(--muted);font-size:13px;line-height:1.5}
+.word{font-size:30px;font-weight:900;margin:18px 0 4px}.pron{color:var(--muted);font-size:14px}.translation{font-size:18px;margin:10px 0}
+button.primary{border:0;background:var(--green);color:white;border-radius:13px;padding:13px 17px;font:inherit;font-weight:800;cursor:pointer;width:100%;margin-top:12px}
+button.secondary{border:1px solid var(--line);background:#f8fbf7;color:var(--ink);border-radius:12px;padding:11px;font:inherit;cursor:pointer}
+.options{display:grid;gap:9px;margin-top:18px}.options button{border:1px solid var(--line);background:white;border-radius:13px;padding:13px;text-align:left;font:inherit;cursor:pointer}.options button.correct{border-color:var(--green);background:#edf8ed}.options button.wrong{border-color:var(--red);background:#fff0ef}
+.feedback{padding:12px;border-radius:12px;margin-top:12px;font-size:14px}.good{background:#eaf7ec}.bad{background:#fff0ef}
+.progress{height:9px;background:#e9efe7;border-radius:20px;overflow:hidden;margin:10px 0}.progress i{display:block;height:100%;background:var(--green);width:0}
+.wordrow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.wordrow:last-child{border:0}.wordrow b{display:block}.wordrow small{color:var(--muted)}
+input{font:inherit;border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;margin:8px 0}
+footer{text-align:center;color:var(--muted);font-size:11px;margin-top:25px}
+@media(min-width:650px){.path,.tilegrid{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div class="brand">🇵🇱 POLSKI</div><div class="tag">DEIN SPRACHTRAINER · A1</div></div>
+ <div class="hero"><h1>Cześć! Schön, dass du da bist.</h1><p>Schritt für Schritt Polnisch lernen – für Alltag, Reisen und deinen Job.</p></div>
+</header>
+<main>
+ <section id="home" class="view active">
+  <div class="stats">
+   <div class="stat"><strong id="xp">0 ⭐</strong><span>GESAMT-XP</span></div>
+   <div class="stat"><strong id="done">0 / 5</strong><span>LEKTIONEN</span></div>
+   <div class="stat"><strong id="streak">0 🔥</strong><span>LERNSTREAK</span></div>
+  </div>
+  <div class="sectionhead"><h2>Dein Lernpfad</h2><small>Grundlagen · A1</small></div>
+  <div class="path" id="lessonPath"></div>
+  <div class="sectionhead"><h2>Direkt üben</h2><small>Wähle einen Bereich</small></div>
+  <div class="tilegrid">
+   <button class="tile" onclick="startReview()"><span class="ico">🧠</span><b>Vokabeltraining</b><small>Wörter wiederholen</small></button>
+   <button class="tile" onclick="showView('logistics')"><span class="ico">🚚</span><b>Logistik-Polnisch</b><small>Für deinen Arbeitsalltag</small></button>
+   <button class="tile" onclick="showView('phrasebook')"><span class="ico">💬</span><b>Wortschatz</b><small>Deine bisher gelernten Wörter</small></button>
+  </div>
+  <footer>Dein Lernstand wird lokal in diesem Browser gespeichert.</footer>
+ </section>
+ <section id="lesson" class="view">
+  <button class="back" onclick="showView('home')">← Zurück zum Lernpfad</button>
+  <div class="panel" id="lessonContent"></div>
+ </section>
+ <section id="quiz" class="view">
+  <button class="back" onclick="showView('home')">← Beenden</button>
+  <div class="panel" id="quizContent"></div>
+ </section>
+ <section id="phrasebook" class="view">
+  <div class="sectionhead"><h2>Dein Wortschatz</h2><small id="wordCount">0 Wörter</small></div>
+  <div class="panel" id="wordList"></div>
+ </section>
+ <section id="logistics" class="view">
+  <div class="sectionhead"><h2>🚚 Polnisch für die Logistik</h2><small>Erste Redewendungen</small></div>
+  <p class="sub">Diese Sätze sind eine Vorschau auf dein berufliches Spezialmodul. Tippe auf 🔊, um sie dir vorlesen zu lassen.</p>
+  <div class="panel" id="logisticsList"></div>
+ </section>
+ <section id="profile" class="view">
+  <div class="sectionhead"><h2>Dein Profil</h2></div>
+  <div class="panel">
+   <h3>Lernstand</h3><p class="sub">Deine Daten bleiben auf diesem Gerät und in diesem Browser.</p>
+   <div class="progress"><i id="profileProgress"></i></div><p id="profileText" class="sub"></p>
+   <button class="secondary" onclick="exportData()">Lernstand exportieren</button>
+   <button class="secondary" onclick="resetData()" style="margin-left:6px">Fortschritt zurücksetzen</button>
+  </div>
+ </section>
+</main>
+<nav>
+ <button class="active" data-view="home" onclick="showView('home')">🏠 Lernen</button>
+ <button data-view="phrasebook" onclick="showView('phrasebook')">📚 Wörter</button>
+ <button data-view="logistics" onclick="showView('logistics')">🚚 Job</button>
+ <button data-view="profile" onclick="showView('profile')">👤 Profil</button>
+</nav>
+<script>
+const lessons=[
+ {title:"Hallo & Begrüßung",emoji:"👋",desc:"Begrüßen und verabschieden",words:[
+  ["Cześć","Tschäschtsch","Hallo / Tschüss"],["Dzień dobry","Dschän dobry","Guten Tag"],["Dobry wieczór","Dobry wjetschur","Guten Abend"],["Do widzenia","Do widsenja","Auf Wiedersehen"],["Dziękuję","Dschjenkuje","Danke"],["Proszę","Prosche","Bitte / Gern geschehen"]]},
+ {title:"Höflichkeit & Vorstellung",emoji:"🤝",desc:"Bitte, danke und sich vorstellen",words:[
+  ["Tak","Tak","Ja"],["Nie","Njäh","Nein"],["Przepraszam","Pschespras(ch)am","Entschuldigung"],["Nazywam się…","Nasywam schje…","Ich heiße…"],["Jak się masz?","Jak schje masch?","Wie geht es dir?"],["Dobrze","Dobsche","Gut"]]},
+ {title:"Zahlen & Uhrzeit",emoji:"🔢",desc:"Die ersten Zahlen und Zeitangaben",words:[
+  ["jeden","Jäden","eins"],["dwa","Dwa","zwei"],["trzy","Tschy","drei"],["cztery","Tschtery","vier"],["pięć","Pjentsch","fünf"],["dziesięć","Dschjeschjentsch","zehn"]]},
+ {title:"Unterwegs in Polen",emoji:"🧭",desc:"Orientierung und einfache Fragen",words:[
+  ["Gdzie jest…?","Gdschje jäst…?","Wo ist…?"],["prosto","Prosto","geradeaus"],["w lewo","W lewo","nach links"],["w prawo","W prawo","nach rechts"],["dworzec","Dwoschets","Bahnhof"],["pomoc","Pomots","Hilfe"]]},
+ {title:"Erste Gespräche",emoji:"💬",desc:"Kurze Sätze verstehen und bilden",words:[
+  ["Nie rozumiem","Njäh rosumiem","Ich verstehe nicht"],["Czy mówisz po angielsku?","Tschy muwisch po angjelsku?","Sprichst du Englisch?"],["Trochę","Troche","Ein bisschen"],["W porządku","W poschontku","In Ordnung"],["Miło mi","Milo mi","Freut mich"],["Do zobaczenia","Do sobatschenja","Bis bald"]]}
+];
+const logistics=[
+ ["Gdzie jest miejsce załadunku?","Wo ist die Ladestelle?"],
+ ["O której godzinie może pan załadować?","Um wie viel Uhr können Sie laden?"],
+ ["Kiedy kierowca przyjedzie?","Wann kommt der Fahrer an?"],
+ ["Jaka jest cena transportu?","Wie hoch ist der Transportpreis?"],
+ ["Czy może pan zaproponować lepszą cenę?","Können Sie einen besseren Preis anbieten?"],
+ ["Proszę wysłać potwierdzenie.","Bitte schicken Sie eine Bestätigung."],
+ ["Czy wszystko jest w porządku?","Ist alles in Ordnung?"]
+];
+const initial={xp:0,completed:[],learned:[],streak:0,lastDay:null};
+let state;try{state={...initial,...JSON.parse(localStorage.getItem("polskiState")||"{}")}}catch(e){state={...initial}}
+function save(){localStorage.setItem("polskiState",JSON.stringify(state));renderStats()}
+function today(){return new Date().toISOString().slice(0,10)}
+function addXP(n){state.xp+=n;let d=today();if(state.lastDay!==d){let y=new Date(Date.now()-86400000).toISOString().slice(0,10);state.streak=state.lastDay===y?state.streak+1:1;state.lastDay=d}save()}
+function renderStats(){document.getElementById("xp").textContent=state.xp+" ⭐";document.getElementById("done").textContent=state.completed.length+" / "+lessons.length;document.getElementById("streak").textContent=state.streak+" 🔥";document.getElementById("profileProgress").style.width=(state.completed.length/lessons.length*100)+"%";document.getElementById("profileText").textContent=state.completed.length+" von "+lessons.length+" Lektionen abgeschlossen · "+state.learned.length+" Wörter gesammelt · "+state.xp+" XP"}
+function showView(id){document.querySelectorAll(".view").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===id));if(id==="phrasebook")renderWords();if(id==="logistics")renderLogistics();if(id==="profile")renderStats();window.scrollTo(0,0)}
+function renderPath(){document.getElementById("lessonPath").innerHTML=lessons.map((l,i)=>`<button class="lesson ${state.completed.includes(i)?"done":""}" onclick="openLesson(${i})"><span class="emoji">${l.emoji}</span><span><b>${i+1}. ${l.title} ${state.completed.includes(i)?"✓":""}</b><small>${l.desc}</small></span></button>`).join("")}
+let currentLesson=0,step=0;
+function openLesson(i){currentLesson=i;step=0;renderLesson();showView("lesson")}
+function renderLesson(){let l=lessons[currentLesson],w=l.words[step];document.getElementById("lessonContent").innerHTML=`<div class="sub">LEKTION ${currentLesson+1} VON ${lessons.length} · SCHRITT ${step+1} VON ${l.words.length}</div><div class="progress"><i style="width:${(step/l.words.length)*100}%"></i></div><h2 class="cardtitle">${l.emoji} ${l.title}</h2><p class="sub">${l.desc}</p><div class="word">${w[0]}</div><div class="pron">Ungefähre Aussprache: ${w[1]}</div><div class="translation">${w[2]}</div><button class="secondary" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊 Anhören</button><button class="primary" onclick="nextWord()">Verstanden – weiter</button>`}
+function nextWord(){let l=lessons[currentLesson],w=l.words[step];if(!state.learned.includes(w[0]))state.learned.push(w[0]);if(step<l.words.length-1){step++;renderLesson()}else{if(!state.completed.includes(currentLesson))state.completed.push(currentLesson);addXP(20);renderPath();document.getElementById("lessonContent").innerHTML=`<div style="font-size:42px">🎉</div><h2>Super gemacht!</h2><p>Du hast „${l.title}“ abgeschlossen und 20 XP gesammelt.</p><button class="primary" onclick="showView('home')">Zurück zum Lernpfad</button>`}}
+let quizWords=[],qIndex=0,score=0,reviewMode=false;
+function startReview(){let all=lessons.flatMap(l=>l.words);quizWords=[...all].sort(()=>Math.random()-.5).slice(0,8);qIndex=0;score=0;reviewMode=true;showView("quiz");renderQuestion()}
+function startLogisticsQuiz(){quizWords=logistics.map(x=>[x[0],"",x[1]]).sort(()=>Math.random()-.5).slice(0,5);qIndex=0;score=0;reviewMode=false;showView("quiz");renderQuestion()}
+function renderQuestion(){let el=document.getElementById("quizContent");if(qIndex>=quizWords.length){addXP(score*5);el.innerHTML=`<div style="font-size:40px">🏆</div><h2>Training abgeschlossen!</h2><p>Du hast ${score} von ${quizWords.length} richtig beantwortet.</p><p class="sub">Du erhältst ${score*5} XP.</p><button class="primary" onclick="showView('home')">Weiterlernen</button>`;return}let w=quizWords[qIndex],pool=reviewMode?lessons.flatMap(l=>l.words).filter(x=>x[0]!==w[0]).map(x=>x[2]):logistics.filter(x=>x[0]!==w[0]).map(x=>x[1]);let opts=[w[2],...pool.sort(()=>Math.random()-.5).slice(0,3)].sort(()=>Math.random()-.5);el.innerHTML=`<div class="sub">FRAGE ${qIndex+1} VON ${quizWords.length}</div><div class="progress"><i style="width:${qIndex/quizWords.length*100}%"></i></div><h2 class="cardtitle">${reviewMode?"Was bedeutet dieser Ausdruck?":"Was bedeutet dieser Satz?"}</h2><div class="word" style="font-size:${w[0].length>22?"21px":"27px"}">${w[0]}</div><button class="secondary" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊 Anhören</button><div class="options">${opts.map(o=>`<button onclick="answer(this,${JSON.stringify(o)===JSON.stringify(w[2])})">${o}</button>`).join("")}</div><div id="feedback"></div>`}
+function answer(btn,ok){if(document.querySelector(".options button:disabled"))return;document.querySelectorAll(".options button").forEach(b=>b.disabled=true);if(ok){score++;btn.classList.add("correct");document.getElementById("feedback").innerHTML='<div class="feedback good">Richtig! Sehr gut. 🎉</div>'}else{btn.classList.add("wrong");document.getElementById("feedback").innerHTML='<div class="feedback bad">Noch nicht ganz. Richtig wäre: '+quizWords[qIndex][2]+'</div>'}let b=document.createElement("button");b.className="primary";b.textContent="Weiter";b.onclick=()=>{qIndex++;renderQuestion()};document.getElementById("feedback").appendChild(b)}
+function renderWords(){let all=lessons.flatMap(l=>l.words).filter(w=>state.learned.includes(w[0]));document.getElementById("wordCount").textContent=all.length+" Wörter";document.getElementById("wordList").innerHTML=all.length?all.map(w=>`<div class="wordrow"><div><b>${w[0]}</b><small>${w[2]}</small></div><button class="secondary" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊</button></div>`).join(""):"Du hast noch keine Wörter gesammelt. Starte deine erste Lektion!"}
+function renderLogistics(){document.getElementById("logisticsList").innerHTML=logistics.map(w=>`<div class="wordrow"><div><b>${w[0]}</b><small>${w[1]}</small></div><button class="secondary" onclick="speak('${w[0].replace(/'/g,"\\'")}')">🔊</button></div>`).join("")+`<button class="primary" onclick="startLogisticsQuiz()">Logistik-Quiz starten</button>`}
+function speak(t){if(!("speechSynthesis"in window)){alert("Sprachausgabe wird von diesem Browser leider nicht unterstützt.");return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang="pl-PL";u.rate=.82;speechSynthesis.speak(u)}
+function exportData(){let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="polski-lernstand.json";a.click();URL.revokeObjectURL(a.href)}
+function resetData(){if(confirm("Möchtest du deinen gesamten Lernfortschritt wirklich löschen?")){state={...initial};save();renderPath();renderWords()}}
+renderStats();renderPath();
+if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(err => console.warn("Service Worker:", err))); }
+</script>
+</body></html>
